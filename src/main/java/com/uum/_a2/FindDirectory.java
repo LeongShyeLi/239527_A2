@@ -10,8 +10,6 @@ package com.uum._a2;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 class FindDirectory {
@@ -29,10 +27,11 @@ class FindDirectory {
     }
 
     public static void setFiles(ArrayList<String> files) {
-        Path currentPath = Paths.get("");
+        String workingDirectory = System.getProperty("user.dir");
+       
         directory = fd.getClass().getPackage().getName();
-        directory = directory.replace(".", "\\");
-        path = currentPath.toAbsolutePath().toString() + "\\src\\main\\java\\" + directory;
+        directory = directory.replace(".", "/");
+        path = workingDirectory + File.separator + "/src/main/java/" + directory;
         File f = new File(path);
         try {
             for (File file : f.listFiles()) {
@@ -49,10 +48,11 @@ class FindDirectory {
     }
 
     public static String getExcelFile() {
-        Path currentPath = Paths.get("");
+        String workingDirectory = System.getProperty("user.dir");
+       
         directory = fd.getClass().getPackage().getName();
-        directory = directory.replace(".", "\\");
-        path = currentPath.toAbsolutePath().toString() + "\\src\\main\\java\\"+ directory;
+        directory = directory.replace(".", "/");
+        path = workingDirectory + File.separator + "/src/main/java/" + directory;
         File f = new File(path);
         try {
             for (File file : f.listFiles()) {
